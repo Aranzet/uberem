@@ -1,0 +1,589 @@
+@font-face {
+    font-family: "TTTravels-Light";
+    src: url("../fonts/TTTravels-Light.ttf") format("opentype");
+}
+
+@font-face {
+    font-family: "TTTravels-Regular";
+    src: url("../fonts/TTTravels-Regular.ttf") format("opentype");
+}
+
+@font-face {
+    font-family: "TTTravels-Medium";
+    src: url("../fonts/TTTravels-Medium.ttf") format("opentype");
+}
+
+@font-face {
+    font-family: "TTTravels-DemiBold";
+    src: url("../fonts/TTTravels-DemiBold.ttf") format("opentype");
+}
+
+@font-face {
+    font-family: "TTTravels-Bold";
+    src: url("../fonts/TTTravels-Bold.ttf") format("opentype");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    font-family: "TTTravels-Regular";
+    font-size: 18px;
+    color: #404040;
+}
+
+/* Шапка с меню */
+
+header {
+    height: 800px;
+}
+
+.nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    transition: .3s ease;
+}
+
+.nav-bar__container {
+    display: flex;
+    align-items: center;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 16px 30px 17px 55px;
+    font-family: "TTTravels-Medium";
+}
+
+.nav-bar_sticky {
+    background: #FFFFFF;
+    box-shadow: 0px 2px 14px rgba(0, 0, 0, 0.07);
+}
+
+/* Логотип */
+
+.nav-bar__logo {
+    display: flex;
+}
+
+/* Переключатель типа помещения */
+
+.nav-bar__switcher {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    padding: 3px;
+    margin: 0 85px 0 24px;
+    font-size: 14px;
+    background-color: #FFF;
+    border-radius: 48px;
+    z-index: 0;
+}
+
+.nav-bar_sticky .nav-bar__switcher {
+    border: 1px solid #E2E8F0;
+    padding: 2px;
+}
+
+.nav-bar__switcher .nav-bar__house {
+    margin-right: 4px;
+}
+
+.nav-bar__switcher label {
+    user-select: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    will-change: transform;
+    transform: translateZ(0px);
+    transition: transform 125ms ease-in-out, filter 125ms ease-in-out;
+}
+
+.nav-bar__switcher input[type="radio"] {
+    display: none;
+}
+
+.nav-bar__switcher input[type="radio"]#house ~ .blob {
+    transform-origin: right center;
+}
+
+.nav-bar__switcher input[type="radio"]#office ~ .blob {
+    transform-origin: left center;
+}
+
+.nav-bar__switcher input[type="radio"]#house:checked ~ .blob {
+    background: #5A30F0;
+    animation-name: stretchyRev;
+}
+
+.nav-bar__switcher input[type="radio"]#office:checked ~ .blob {
+    background-color: #5A30F0;
+    animation-name: stretchy;
+    width: 61px;
+}
+
+.nav-bar__switcher input[type="radio"]#house:checked ~ .nav-bar__house {
+    color: #FFF;
+}
+
+.nav-bar__switcher input[type="radio"]#office:checked ~ .nav-bar__office {
+    color: #FFF;
+}
+
+.nav-bar__switcher .blob {
+    top: 0;
+    left: 0;
+    width: 51px;
+    height: calc(100% - 6px);
+    margin: 3px;
+    position: absolute;
+    z-index: -1;
+    border-radius: 48px;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    transition: transform 150ms ease;
+}
+
+.nav-bar_sticky .nav-bar__switcher .blob {
+    height: calc(100% - 4px);
+    margin: 2px;
+}
+
+.nav-bar__switcher .blob:before {
+    left: 0;
+    animation-delay: 0.15s;
+}
+
+.nav-bar__switcher .blob:after {
+    right: 0;
+}
+
+@keyframes stretchy {
+    0% {
+        transform: translateX(0) scaleX(1);
+   }
+    50% {
+        transform: translateX(0) scaleX(2);
+   }
+    100% {
+        transform: translateX(100%) scaleX(1);
+   }
+}
+
+@keyframes stretchyRev {
+    0% {
+        transform: translateX(100%) scaleX(1);
+   }
+    50% {
+        transform: translateX(0) scaleX(2);
+   }
+    100% {
+        transform: translateX(0) scaleX(1);
+   }
+}
+
+/* Меню */
+
+.nav-bar__menu {
+    display: flex;
+    margin-right: 70px;
+    font-size: 16px;
+}
+
+.nav-bar__item {
+    list-style: none;
+    margin-right: 32px;
+    letter-spacing: 0.2px;
+}
+
+.nav-bar__item:last-child {
+    margin-right: 0;
+}
+
+.nav-bar__item a {
+    text-decoration: none;
+    color: #404040;
+}
+
+/* Контакты */
+
+.nav-bar__contact {
+    display: flex;
+    margin-right: 32px;
+    font-size: 16px;
+    letter-spacing: 0.2px;
+    font-family: "TTTravels-DemiBold";
+}
+
+.nav-bar__phone {
+    text-decoration: none;
+    color: #404040;
+}
+
+.nav-bar__contact hr {
+    display: block;
+    width: 1px;
+    height: 14px;
+    margin: 1px 15px 0 15px;
+    border: none;
+    background-color: #404040;
+}
+
+/* Кнопка открытия-закрытия мобильного меню */
+
+.nav-bar__toggle {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 5px;
+}
+
+.nav-bar__toggle span {
+    width: 20px;
+    height: 2px;
+    background-color: #404040;
+}
+
+.nav-bar__toggle span:first-child {
+    margin-bottom: 8px;
+}
+
+/* 1-й блок в шапке "Уборка квартиры" */
+
+.header__content {
+    display: flex;
+    height: 100%;
+}
+
+.header__img {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.header__text-block {
+    width: 400px;
+    margin: 221px auto 0;
+}
+
+.header__title {
+    font-size: 76px;
+    line-height: 110%;
+}
+
+.header__desc {
+    padding-top: 30px;
+    font-size: 18px;
+    line-height: 140%;
+}
+
+/* Прилипающая кнопка */
+
+.sticky-button {
+    display: inline-block;
+    width: 240px;
+    height: 240px;
+    transition: .3s;
+    position: fixed;
+    top: 585px;
+    left: 50%;
+    transform: translate(-50%, -10%);
+    border-radius: 50%;
+    z-index: 10;
+    transition: .3s ease;
+}
+
+.sticky-button__circle {
+    display: inline-block;
+    width: 195px;
+    height: 195px;
+    background: #5A30F0;
+    border-radius: 50%;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    margin-left:-50px;
+    margin-top:-50px;
+    z-index: 4;
+    transition: .3s ease;
+}
+
+/* В данный момент не получаеться реализовать привязку текста кнопки к курсору и анимацию одновременно */
+
+.sticky-button__text {
+    position: absolute;
+    top: 40%;
+    left: 0;
+    transform: rotate(-15deg);
+    display: inline-block;
+    z-index: 10;
+    width: 100%;
+    text-align: center;
+    color: #FFF;
+    text-transform: uppercase;
+    font-family: "TTTravels-Medium";
+    letter-spacing: 0.03em;
+    transition: .3s ease;
+    /* animation: rotating 20s linear infinite; */
+}
+
+/* @keyframes rotating {
+    0% {
+      transform: rotate(-15deg);
+    }
+    50% {
+      transform: rotate(60deg);
+    }
+    100% {
+        transform: rotate(-15deg);
+    }
+} */
+
+/* Уменьшение кнопки и перемещение */
+
+.sticky-button_bottom {
+    width: 210px;
+    height: 210px;
+    top: none;
+    bottom: 0;
+    transform: translate(-50%, 105%);
+    transition: 1s ease;
+}
+
+.sticky-button_bottom .sticky-button__circle {
+    width: 175px;
+    height: 175px;
+}
+
+.sticky-button_bottom .sticky-button__text {
+    font-size: 16px;
+    transform: rotate(-15deg);
+}
+
+/* Блок "Преимущества" */
+
+.features {
+    position: relative;
+    width: 1320px;
+    padding: 73px 0 0;
+    margin: 0 auto;
+    z-index: -1;
+}
+
+.features__list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.features__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    height: 330px;
+    background: #F3F6FB;
+    border-radius: 8px;
+}
+
+.features__title {
+    width: 220px;
+    padding-top: 20px;
+    font-size: 24px;
+    line-height: 130%;
+    text-align: center;
+    font-style: normal;
+    font-weight: 500;
+    font-family: "TTTravels-Medium";
+}
+
+.features__desc {
+    display: none;
+    padding: 30px;
+    font-size: 16px;
+    line-height: 140%;
+    color: #FFFFFF;
+}
+
+.features__item:hover {
+    background: #5A30F0;
+    transition: .5s ease;
+}
+
+.features__item:hover .features__title,
+.features__item:hover img {
+    display: none;
+}
+
+.features__item:hover .features__desc {
+    display: block;
+}
+
+/* Блок "Как мы убираем" */
+
+.how-we-clean {
+    width: 100%;
+    background-color: #fff;
+    padding-top: 149px;
+}
+
+.how-we-clean__container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1094px;
+    margin: 0 auto;
+    padding-bottom: 52px;
+}
+
+.how-we-clean__title {
+    width: fit-content;
+    font-weight: normal;
+    font-size: 44px;
+    line-height: 120%;
+}
+
+.how-we-clean__desc {
+    width: 415px;
+    line-height: 140%;
+}
+
+/* Блок "Как мы убираем с меню и точками интереса" */
+
+.clean-examples {
+    position: relative;
+}
+
+/* Меню "Как мы убираем с меню" */
+
+.clean-examples__menu {
+    position: absolute;
+    left: -1000px;
+    top: 0;
+    width: 375px;
+    height: calc(100vh - 74px);
+    background: #5A30F0;
+    transition: 1s ease;
+}
+
+.clean-examples__title {
+    padding: 35px 53px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #FFFFFF;
+    font-style: normal;
+}
+
+.clean-examples__list {
+    position: absolute;
+    left: 60px;
+    top: 50%;
+    transform: translate(0, calc(-50% - 10px));
+}
+
+.clean-examples__item {
+    padding-bottom: 22px;
+    list-style: none;
+    font-size: 44px;
+    line-height: 120%;
+    color: #FFFFFF;
+    font-weight: 400;
+    opacity: 0.7;
+}
+
+.clean-examples__item:last-child {
+    padding-bottom: 0;
+}
+
+.clean-examples__item_active {
+    font-style: italic;
+    opacity: 1;
+}
+
+.clean-examples_full-screen .clean-examples__menu {
+    left: 0;
+}
+
+/* Точки интереса */
+
+.cd-container {
+    width: 1094px;
+}
+
+.cd-product-wrapper {
+    max-width: fit-content;
+}
+
+.cd-single-point {
+    list-style: none;
+}
+
+.cd-single-point .cd-more-info {
+    width: max-content;
+    max-width: 220px;
+    height: fit-content;
+    padding: 8px 10px;
+    text-align: center;
+}
+
+.cd-single-point > a,
+.cd-single-point.is-open > a,
+.cd-single-point.visited > a {
+    background: #5A30F0;
+}
+
+.clean-examples_full-screen .cd-container {
+    position: absolute;
+    right: 0;
+    width: calc(100% - 375px);
+    height: calc(100vh - 74px);
+}
+
+.clean-examples_full-screen .cd-product-wrapper {
+    display: contents;
+}
+
+.clean-examples_full-screen .cd-product-wrapper > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cd-single-point:nth-of-type(1) {
+    bottom: 65%;
+    right: 67%;
+}
+
+.cd-single-point:nth-of-type(2) {
+    bottom: 38%;
+    right: 74%;
+}
+
+.cd-single-point:nth-of-type(3) {
+    top: 94%;
+    left: 31%;
+}
+
+.cd-single-point:nth-of-type(4) {
+    top: 63%;
+    right: 50%;
+}
+
+.cd-single-point:nth-of-type(5) {
+    top: 80%;
+    right: 39%;
+}
+
+.cd-single-point:nth-of-type(6) {
+    top: 49%;
+    right: 33%;
+}
+
+.cd-single-point:nth-of-type(7) {
+    top: 66%;
+    right: 10%;
+}
